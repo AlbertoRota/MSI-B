@@ -5,16 +5,19 @@ import time
 # Third party imports
 from pynput import keyboard
 
+# Local application imports
+import src.main.code.coordinates as coords
+
 from src.main.code.windowMgr import WindowMgr
 
 # Global variables
 end_program = False
-wMgr = WindowMgr()
+w_mgr = WindowMgr()
 
 
 def on_press(key):
     """Pressing "Right Sift" will stop the program, "Tab" will take an snapshot."""
-    global end_program, wMgr
+    global end_program, w_mgr
     if key == keyboard.Key.shift_r:
         end_program = True
         return False
@@ -25,11 +28,15 @@ def on_press(key):
             k = key.name  # other keys
 
         if k == "1":
-            save_screenshot(wMgr.capture_full_screen())
+            save_screenshot(w_mgr.capture_full_screen())
         elif k == "2":
-            save_screenshot(wMgr.capture_full_window())
+            save_screenshot(w_mgr.capture_full_window())
         elif k == "3":
-            save_screenshot(wMgr.capture_full_game_area())
+            save_screenshot(w_mgr.capture_full_game_area())
+        elif k == "4":
+            save_screenshot(w_mgr.capture_game_area(coords.offline_march_close))
+        elif k == "5":
+            save_screenshot(w_mgr.capture_game_area(coords.offline_march_caption))
 
 
 def save_screenshot(screenshot):
@@ -41,9 +48,9 @@ def save_screenshot(screenshot):
 
 def main():
     """Program entry point."""
-    global end_program, wMgr
+    global end_program, w_mgr
 
-    wMgr.reposition_window()
+    w_mgr.reposition_window()
     keyboard.Listener(on_press=on_press).start()
     while not end_program:
         pass
