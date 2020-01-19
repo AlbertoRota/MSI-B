@@ -27,3 +27,15 @@ quest_slot_3 = (389, 339, 493, 366)
 quest_slot_4 = (512, 339, 615, 366)
 quest_slot_5 = (634, 339, 738, 366)
 quest_slot_6 = (758, 339, 807, 366)
+
+open_slug_button = (714, 411, 743, 437)
+open_excavation_site_button = (490, 420, 595, 452)
+
+general_excavation_exhausted = (141, 273, 149, 285)
+general_excavation_button = (102, 326, 203, 359)
+advanced_excavation_exhausted = (401, 273, 408, 285)
+advanced_excavation_button = (357, 326, 458, 359)
+expert_excavation_exhausted = (656, 273, 663, 285)
+expert_excavation_button = (612, 326, 713, 359)
+
+close_excavation_result = (778, 15, 797, 35)

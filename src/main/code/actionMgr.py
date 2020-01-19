@@ -38,18 +38,52 @@ class ActionMgr:
 
     def use_slugs_to_skip_lvls(self):
         self._click_in_area(coords.slot_switch_slug)
+        sleep(2)
         random.shuffle(self._slot_areas)
         for slug_slot_area in self._slot_areas:
             self._click_in_area(slug_slot_area, 0.2, 1)
+        sleep(2)
         self._click_in_area(coords.slot_switch_slug)
 
     def lvl_up_quests(self):
-        self._click_in_area(coords.open_quest_button, 1.0, 1.5)
+        self._click_in_area(coords.open_quest_button, 2.0, 3.5)
         for unlock_quest_slot_area in self._unlock_up_quests_areas:
             self._click_in_area(unlock_quest_slot_area, 0.5, 1)
         for lvl_up_quest_slot_area in self._lvl_up_quests_areas:
             self._hold_in_area(lvl_up_quest_slot_area, 1, 3)
         self._click_in_area(coords.close_quest_button, 0.5, 1.5)
+
+    def excavate_slugs(self):
+        # Open correct menu
+        self._click_in_area(coords.open_slug_button, 2.0, 3.5)
+        self._click_in_area(coords.open_excavation_site_button, 2.0, 3.5)
+
+        # Excavate Expert slugs
+        if not self._im.is_expert_excavation_exhausted(self._w_mgr.capture_game_area(coords.expert_excavation_exhausted)):
+            self._click_in_area(coords.expert_excavation_button)
+            while not self._im.is_excavation_result_close(self._w_mgr.capture_game_area(coords.close_excavation_result)):
+                sleep(1)
+            self._click_in_area(coords.close_excavation_result, 2.0, 3.5)
+
+        # Excavate Advanced slugs
+        if not self._im.is_advanced_excavation_exhausted(self._w_mgr.capture_game_area(coords.advanced_excavation_exhausted)):
+            self._click_in_area(coords.advanced_excavation_button)
+            while not self._im.is_excavation_result_close(
+                    self._w_mgr.capture_game_area(coords.close_excavation_result)):
+                sleep(1)
+            self._click_in_area(coords.close_excavation_result, 2.0, 3.5)
+
+        # Excavate General slugs
+        if not self._im.is_general_excavation_exhausted(self._w_mgr.capture_game_area(coords.general_excavation_exhausted)):
+            self._click_in_area(coords.general_excavation_button)
+            while not self._im.is_excavation_result_close(
+                    self._w_mgr.capture_game_area(coords.close_excavation_result)):
+                sleep(1)
+            self._click_in_area(coords.close_excavation_result, 2.0, 3.5)
+
+        # Close all menus
+        self._click_in_area(coords.close_excavation_result, 2.0, 3.5)
+
 
     def _click_in_area(self, area, min_time=1.0, max_time=1.0):
         pyautogui.click(
