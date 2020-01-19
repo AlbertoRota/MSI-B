@@ -34,9 +34,7 @@ def on_press(key):
         elif k == "3":
             save_screenshot(w_mgr.capture_full_game_area())
         elif k == "4":
-            save_screenshot(w_mgr.capture_game_area(coords.offline_march_close))
-        elif k == "5":
-            save_screenshot(w_mgr.capture_game_area(coords.offline_march_caption))
+            save_screenshot(w_mgr.capture_game_area_as_img(coords.notice_caption))
 
 
 def save_screenshot(screenshot):

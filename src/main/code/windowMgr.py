@@ -46,16 +46,20 @@ class WindowMgr:
             True
         )
 
-    def capture_full_screen(self):
+    @staticmethod
+    def capture_full_screen():
         return ImageGrab.grab()
 
-    def capture_full_window(self):
+    @staticmethod
+    def capture_full_window():
         return ImageGrab.grab(coords.window_area)
 
-    def capture_full_game_area(self):
+    @staticmethod
+    def capture_full_game_area():
         return ImageGrab.grab(coords.game_area)
 
-    def capture_game_area(self, area):
+    @staticmethod
+    def capture_game_area(area):
         screen_coords = (
             coords.game_area[0] + area[0],
             coords.game_area[1] + area[1],
@@ -63,3 +67,13 @@ class WindowMgr:
             coords.game_area[1] + area[3]
         )
         return _img_2_np(ImageGrab.grab(screen_coords))
+
+    @staticmethod
+    def capture_game_area_as_img(area):
+        screen_coords = (
+            coords.game_area[0] + area[0],
+            coords.game_area[1] + area[1],
+            coords.game_area[0] + area[2],
+            coords.game_area[1] + area[3]
+        )
+        return ImageGrab.grab(screen_coords)
