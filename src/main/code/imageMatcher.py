@@ -11,6 +11,7 @@ class ImageMatcher:
 
         path = 'src/main/resources/templates/'
         self._notice_caption = cv.imread(path + 'Notice_Caption.png', cv.IMREAD_COLOR)
+        self._log_in_reward_caption = cv.imread(path + 'LogInReward_Caption.png', cv.IMREAD_COLOR)
         self._offline_march_caption = cv.imread(path + 'OfflineMarch_Caption.png', cv.IMREAD_COLOR)
         self._expert_excavation_exhausted = cv.imread(path + 'Excavation_ExpertExhausted.png', cv.IMREAD_COLOR)
         self._advanced_excavation_exhausted = cv.imread(path + 'Excavation_AdvancedExhausted.png', cv.IMREAD_COLOR)
@@ -20,6 +21,10 @@ class ImageMatcher:
     def is_notice_caption(self, image):
         """Returns True if the image contains the "Notice" caption, False otherwise."""
         return self._match(image, self._notice_caption)
+
+    def is_log_in_reward_caption(self, image):
+        """Returns True if the image contains the "Log in rewards" caption, False otherwise."""
+        return self._match(image, self._log_in_reward_caption)
 
     def is_offline_march_caption(self, image):
         """Returns True if the image contains the "Offline-March" caption, False otherwise."""

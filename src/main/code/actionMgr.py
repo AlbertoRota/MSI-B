@@ -20,12 +20,17 @@ class ActionMgr:
         self._w_mgr = WindowMgr()
 
         self._slot_areas = [coords.hero_slot_1, coords.hero_slot_2, coords.hero_slot_3, coords.hero_slot_4, coords.hero_slot_5, coords.hero_slot_6]
-        self._unlock_up_quests_areas = [coords.quest_slot_6, coords.quest_slot_5, coords.quest_slot_4]
+        self._unlock_up_quests_areas = [coords.quest_slot_5, coords.quest_slot_4]
         self._lvl_up_quests_areas = [coords.quest_slot_3, coords.quest_slot_2, coords.quest_slot_1]
 
     def close_notice_window(self):
         if self._im.is_notice_caption(self._w_mgr.capture_game_area(coords.notice_caption)):
             self._click_in_area(coords.notice_close, 0.5, 1)
+
+    def close_log_in_reward_window(self):
+        if self._im.is_log_in_reward_caption(self._w_mgr.capture_game_area(coords.log_in_reward_caption)):
+            self._click_in_area(coords.log_in_reward_close, 1, 1.5)
+            self._click_in_area(coords.log_in_reward_close, 1, 1.5)
 
     def close_online_march_window(self):
         if self._im.is_offline_march_caption(self._w_mgr.capture_game_area(coords.offline_march_caption)):
@@ -83,7 +88,6 @@ class ActionMgr:
 
         # Close all menus
         self._click_in_area(coords.close_excavation_result, 2.0, 3.5)
-
 
     def _click_in_area(self, area, min_time=1.0, max_time=1.0):
         pyautogui.click(

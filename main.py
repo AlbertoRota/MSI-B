@@ -31,7 +31,9 @@ def main():
 
     # Main loop
     a_mgr.close_notice_window()
+    a_mgr.close_log_in_reward_window()
     a_mgr.close_online_march_window()
+
     while not end_program:
         # Main decision tree
         a_mgr.lvl_up_quests()
