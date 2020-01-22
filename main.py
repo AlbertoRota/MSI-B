@@ -36,10 +36,10 @@ def main():
 
     while not end_program:
         # Main decision tree
-        a_mgr.lvl_up_quests()
-        a_mgr.lvl_up_heroes()
-        a_mgr.use_slugs_to_skip_lvls()
-        # a_mgr.excavate_slugs()
+        # a_mgr.lvl_up_quests()
+        # a_mgr.lvl_up_heroes()
+        # a_mgr.use_slugs_to_skip_lvls()
+        a_mgr.excavate_slugs()
 
 
 if __name__ == '__main__':
