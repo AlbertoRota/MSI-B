@@ -40,6 +40,7 @@ def main():
         # a_mgr.lvl_up_heroes()
         # a_mgr.use_slugs_to_skip_lvls()
         a_mgr.excavate_slugs()
+        a_mgr.batch_promote_slugs()
 
 
 if __name__ == '__main__':

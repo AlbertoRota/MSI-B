@@ -34,7 +34,7 @@ def on_press(key):
         elif k == "3":
             save_screenshot(w_mgr.capture_full_game_area())
         elif k == "4":
-            save_screenshot(w_mgr.capture_game_area_as_img(coords.general_excavation_exhausted))
+            save_screenshot(w_mgr.capture_game_area_as_img(coords.batch_promote_slugs_error))
 
 
 def save_screenshot(screenshot):

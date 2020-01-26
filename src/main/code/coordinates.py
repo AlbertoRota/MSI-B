@@ -40,3 +40,7 @@ expert_excavation_exhausted = (658, 274, 665, 286)
 expert_excavation_button = (612, 326, 713, 359)
 
 close_excavation_result = (781, 15, 800, 35)
+
+batch_promote_slugs_button = (274, 72, 344, 91)
+batch_promote_slugs_accept_button = (284, 282, 393, 309)
+batch_promote_slugs_error = (309, 223, 509, 235)

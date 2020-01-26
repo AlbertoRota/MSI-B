@@ -8,7 +8,6 @@ import pyautogui
 # Local application imports
 import src.main.code.coordinates as coords
 from src.main.code.imageMatcher import ImageMatcher
-from src.main.code.windowMgr import WindowMgr
 
 
 class ActionMgr:
@@ -17,23 +16,22 @@ class ActionMgr:
     def __init__(self):
         """Constructor"""
         self._im = ImageMatcher()
-        self._w_mgr = WindowMgr()
 
         self._slot_areas = [coords.hero_slot_1, coords.hero_slot_2, coords.hero_slot_3, coords.hero_slot_4, coords.hero_slot_5, coords.hero_slot_6]
         self._unlock_up_quests_areas = [coords.quest_slot_5, coords.quest_slot_4]
         self._lvl_up_quests_areas = [coords.quest_slot_3, coords.quest_slot_2, coords.quest_slot_1]
 
     def close_notice_window(self):
-        if self._im.is_notice_caption(self._w_mgr.capture_game_area(coords.notice_caption)):
+        if self._im.is_notice_caption():
             self._click_in_area(coords.notice_close, 0.5, 1)
 
     def close_log_in_reward_window(self):
-        if self._im.is_log_in_reward_caption(self._w_mgr.capture_game_area(coords.log_in_reward_caption)):
+        if self._im.is_log_in_reward_caption():
             self._click_in_area(coords.log_in_reward_close, 1, 1.5)
             self._click_in_area(coords.log_in_reward_close, 1, 1.5)
 
     def close_online_march_window(self):
-        if self._im.is_offline_march_caption(self._w_mgr.capture_game_area(coords.offline_march_caption)):
+        if self._im.is_offline_march_caption():
             self._click_in_area(coords.offline_march_close, 0.5, 1)
 
     def lvl_up_heroes(self):
@@ -64,29 +62,45 @@ class ActionMgr:
         self._click_in_area(coords.open_excavation_site_button, 2.0, 3.5)
 
         # Excavate Expert slugs
-        if not self._im.is_expert_excavation_exhausted(self._w_mgr.capture_game_area(coords.expert_excavation_exhausted)):
+        if not self._im.is_expert_excavation_exhausted():
             self._click_in_area(coords.expert_excavation_button)
-            while not self._im.is_excavation_result_close(self._w_mgr.capture_game_area(coords.close_excavation_result)):
+            while not self._im.is_excavation_result_close():
                 sleep(1)
+            sleep(1)
             self._click_in_area(coords.close_excavation_result, 2.0, 3.5)
 
         # Excavate Advanced slugs
-        if not self._im.is_advanced_excavation_exhausted(self._w_mgr.capture_game_area(coords.advanced_excavation_exhausted)):
+        if not self._im.is_advanced_excavation_exhausted():
             self._click_in_area(coords.advanced_excavation_button)
-            while not self._im.is_excavation_result_close(
-                    self._w_mgr.capture_game_area(coords.close_excavation_result)):
+            while not self._im.is_excavation_result_close():
                 sleep(1)
+            sleep(1)
             self._click_in_area(coords.close_excavation_result, 2.0, 3.5)
 
         # Excavate General slugs
-        if not self._im.is_general_excavation_exhausted(self._w_mgr.capture_game_area(coords.general_excavation_exhausted)):
+        if not self._im.is_general_excavation_exhausted():
             self._click_in_area(coords.general_excavation_button)
-            while not self._im.is_excavation_result_close(
-                    self._w_mgr.capture_game_area(coords.close_excavation_result)):
+            while not self._im.is_excavation_result_close():
                 sleep(1)
+            sleep(1)
             self._click_in_area(coords.close_excavation_result, 2.0, 3.5)
 
         # Close all menus
+        self._click_in_area(coords.close_excavation_result, 2.0, 3.5)
+
+    def batch_promote_slugs(self):
+        # Open correct menu
+        self._click_in_area(coords.open_slug_button, 2.0, 3.5)
+
+        # Do the batch promotion
+        self._click_in_area(coords.batch_promote_slugs_button, 2.0, 3.5)
+        self._click_in_area(coords.batch_promote_slugs_accept_button, 2.0, 3.5)
+
+        # Wait to finish
+        while not self._im.is_excavation_result_close() and not self._im.is_batch_promote_error():
+            sleep(1)
+        sleep(1)
+        self._click_in_area(coords.close_excavation_result, 2.0, 3.5)
         self._click_in_area(coords.close_excavation_result, 2.0, 3.5)
 
     def _click_in_area(self, area, min_time=1.0, max_time=1.0):
